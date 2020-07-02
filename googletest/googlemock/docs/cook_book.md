@@ -410,8 +410,8 @@ NOTE: `NiceMock` and `StrictMock` only affects *uninteresting* calls (calls of
 methods with expectations, but they don't match). See
 [Understanding Uninteresting vs Unexpected Calls](#uninteresting-vs-unexpected).
 
-There are some caveats though (I dislike them just as much as the next guy, but
-sadly they are side effects of C++'s limitations):
+There are some caveats though (sadly they are side effects of C++'s
+limitations):
 
 1.  `NiceMock<MockFoo>` and `StrictMock<MockFoo>` only work for mock methods
     defined using the `MOCK_METHOD` macro **directly** in the `MockFoo` class.
@@ -1675,11 +1675,11 @@ times from calling it with the wrong arguments.
 
 ### Expecting Ordered Calls {#OrderedCalls}
 
-Although an `EXPECT_CALL()` statement defined earlier takes precedence when
-gMock tries to match a function call with an expectation, by default calls don't
-have to happen in the order `EXPECT_CALL()` statements are written. For example,
-if the arguments match the matchers in the third `EXPECT_CALL()`, but not those
-in the first two, then the third expectation will be used.
+Although an `EXPECT_CALL()` statement defined later takes precedence when gMock
+tries to match a function call with an expectation, by default calls don't have
+to happen in the order `EXPECT_CALL()` statements are written. For example, if
+the arguments match the matchers in the second `EXPECT_CALL()`, but not those in
+the first and third, then the second expectation will be used.
 
 If you would rather have all calls occur in the order of the expectations, put
 the `EXPECT_CALL()` statements in a block where you define a variable of type
@@ -2686,7 +2686,7 @@ TEST(EventQueueTest, EnqueueEventTest) {
   EventQueue event_queue(&mock_event_dispatcher);
 
   const int32 kEventId = 321;
-  Notification done;
+  absl::Notification done;
   EXPECT_CALL(mock_event_dispatcher, DispatchEvent(kEventId))
       .WillOnce(Notify(&done));
 
