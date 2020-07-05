@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="gtest_main">
+      <UniqueIdentifier>{3130373b-31f7-44e3-a9b9-867cb65d4f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sample">
+      <UniqueIdentifier>{2a6a13ec-31e9-4c42-a629-a0865f4df45e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\googletest\googletest\src\gtest_main.cc">
+      <Filter>gtest_main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\googletest\googletest\src\gtest-all.cc">
+      <Filter>gtest_main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\googletest\googletest\samples\sample1.cc">
+      <Filter>sample</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\googletest\googletest\samples\sample1_unittest.cc">
+      <Filter>sample</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\googletest\googletest\samples\sample1.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
