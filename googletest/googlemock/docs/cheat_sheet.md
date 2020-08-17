@@ -2,6 +2,8 @@
 
 <!-- GOOGLETEST_CM0019 DO NOT DELETE -->
 
+<!-- GOOGLETEST_CM0035 DO NOT DELETE -->
+
 <!-- GOOGLETEST_CM0033 DO NOT DELETE -->
 
 ## Defining a Mock Class
@@ -279,9 +281,10 @@ Matcher                     | Description
 
 Except `Ref()`, these matchers make a *copy* of `value` in case it's modified or
 destructed later. If the compiler complains that `value` doesn't have a public
-copy constructor, try wrap it in `ByRef()`, e.g.
-`Eq(ByRef(non_copyable_value))`. If you do that, make sure `non_copyable_value`
-is not changed afterwards, or the meaning of your matcher will be changed.
+copy constructor, try wrap it in `std::ref()`, e.g.
+`Eq(std::ref(non_copyable_value))`. If you do that, make sure
+`non_copyable_value` is not changed afterwards, or the meaning of your matcher
+will be changed.
 
 `IsTrue` and `IsFalse` are useful when you need to use a matcher, or for types
 that can be explicitly converted to Boolean, but are not implicitly converted to
@@ -586,13 +589,12 @@ callback type instead of a derived one, e.g.
 ```
 
 In `InvokeArgument<N>(...)`, if an argument needs to be passed by reference,
-wrap it inside `ByRef()`. For example,
+wrap it inside `std::ref()`. For example,
 
 ```cpp
-using ::testing::ByRef;
 using ::testing::InvokeArgument;
 ...
-InvokeArgument<2>(5, string("Hi"), ByRef(foo))
+InvokeArgument<2>(5, string("Hi"), std::ref(foo))
 ```
 
 calls the mock function's #2 argument, passing to it `5` and `string("Hi")` by
